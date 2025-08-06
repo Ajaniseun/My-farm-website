@@ -34,7 +34,7 @@ nav .logo {
 
 /* Hero Section */
 .hero {
-  background: url('images/farm-bg.jpg') no-repeat center center/cover;
+  background: url("Images/Farm.jpeg") no-repeat center center/cover;
   position: relative;
   height: 90vh;
   display: flex;
