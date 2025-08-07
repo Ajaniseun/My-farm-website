@@ -8,6 +8,7 @@ body {
   background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 /* Navbar */
@@ -17,6 +18,9 @@ nav {
   background-color: #2e7d32;
   padding: 1rem 2rem;
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 nav .logo {
   font-size: 1.5rem;
@@ -30,6 +34,10 @@ nav .logo {
 .nav-links a {
   color: white;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover {
+  color: #c8e6c9;
 }
 
 /* Hero Section */
@@ -48,13 +56,19 @@ nav .logo {
   content: "";
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  background: rgba(0, 0, 0, 0.6);  /* ← this adds a dark overlay */
+  background: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
 
 .hero-text {
   z-index: 2;
   position: relative;
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-text h1 {
@@ -71,12 +85,20 @@ nav .logo {
   border: none;
   border-radius: 5px;
   text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #388e3c;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 /* Products */
 .products {
   padding: 2rem;
   text-align: center;
+  animation: fadeIn 1.5s ease-in;
 }
 .product-grid {
   display: grid;
@@ -89,10 +111,19 @@ nav .logo {
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 .product-card img {
   max-width: 100%;
   border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+.product-card img:hover {
+  transform: scale(1.05);
 }
 
 /* Contact */
@@ -103,6 +134,38 @@ nav .logo {
 }
 .contact a {
   color: #2e7d32;
+  text-decoration: none;
+}
+
+/* Contact Form */
+.contact-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.contact-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.contact-form button:hover {
+  background-color: #388e3c;
 }
 
 /* Footer */
@@ -110,4 +173,27 @@ footer {
   background-color: #eee;
   text-align: center;
   padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+  .hero-text p {
+    font-size: 1rem;
+  }
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
 }
